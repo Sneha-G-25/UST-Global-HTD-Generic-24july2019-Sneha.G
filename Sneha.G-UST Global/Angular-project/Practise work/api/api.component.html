@@ -1,0 +1,32 @@
+<!-- <div class ="row bg bg-secondary">
+    <div class ="card card-body col-md-3 mt-4 offset-md-1 float-left bg bg-light border" *ngFor = "let data of github">
+    <img src="{{data.avatar_url}}" alt="">
+    <h3 class="text-center">{{data.id}}</h3>
+    <div class="card-header bg bg-info">{{data.title}}</div>
+    <h5>{{data.body}}</h5>
+</div>
+</div> -->
+<div class="container col-md-12  mt-5">
+<table class="table table-hover table-border" >
+    <thead> 
+        <tr class="thead-dark" style="font: 500" >
+            <th><h3>Photo</h3></th>
+            <th><h3>Person-id</h3></th>
+            <th><h3>Name</h3></th>
+            <th><h3>Repo_url</h3></th>
+            <th><h3>Modifications</h3></th>
+            
+            
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor =" let data of github">
+           <td><img src="{{data.avatar_url}}" class="card card-body" style="width: 18rem" alt=""></td>
+           <td><h3>{{data.id}}</h3></td>
+           <td>{{data.login}}</td>
+           <td>{{data.repos_url}}</td>
+           <th><button type="submit" class="btn btn-danger btn-lg active" (click)="deletUser(data)"> Delet</button></th>
+        </tr>
+    </tbody>
+</table>
+</div>

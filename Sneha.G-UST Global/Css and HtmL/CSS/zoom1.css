@@ -1,0 +1,23 @@
+.img-div{
+    float:left;
+    border: 1px solid black;
+    border-radius: 25px;
+    overflow: hidden;
+    text-align: center;
+    margin-left: 10px;
+}
+
+img{
+    width  : 200px;
+    height : 250px;
+    transition: all 2s; /*this is to give timing for zooming*/
+}
+
+img:hover{
+     transform: scale(1.2,1.2); /*1.2 is the width and hight of the picture to be enlarged */
+}
+.desc{
+    margin-top: 10px;/*margine distance from the top */
+    
+    font-family: Arial;
+}

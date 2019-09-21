@@ -1,0 +1,13 @@
+.grad{
+    height: 300px;
+    background: linear-gradient(red,yellow);
+
+}
+#back{
+    height: 100px;
+    background: linear-gradient(to right,black,white)
+}
+.ground{
+    height: 300px;
+    background: radial-gradient(orange,pink,blue,black);
+}

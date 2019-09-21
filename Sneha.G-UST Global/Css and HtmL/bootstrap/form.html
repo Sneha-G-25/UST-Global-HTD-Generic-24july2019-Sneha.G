@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="/bootstrap-4.3.1-dist/css/bootstrap.css">
+   
+</head>
+<body>
+    <div class="container">  
+        <!-- //b3-form is the shortcut,offset to move center,6 is occupied by form so only 3 grids in total 12 grids -->
+        <div class="card col-md-6 mt-2 offset-3">
+            <div class="card-body">
+        <form action="" method="POST" role="form">
+            <legend>Login</legend>
+            <!-- form group is to take spacing between boxes
+            form controle is to aline labels  -->
+            <div class="form-group">
+                <label for="username">Username</label>
+                <input type="text" class="form-control" id="username" placeholder="Input field">
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="text" class="form-control" id="password" placeholder="Input field">
+            </div>
+            <button type="submit" class="btn btn-success float-right">Submit</button>
+            <!-- success word makes box green colour and primary,converts to blue clour float right is to move button to right  -->
+        </form>
+       </div>
+       </div> 
+    </div>
+    <script src="/java Script/jquery-3.4.1.js"></script>    <!-- //jquary should be linked 1st -->
+    <script src="/bootstrap-4.3.1-dist/js/bootstrap.js"></script>   
+</body>
+</html>

@@ -1,0 +1,16 @@
+.tree{
+      transform: translate(50px,500px);
+      font-size: 20px;
+}
+#fox{
+     transform: rotate(20deg)
+}
+.box{
+    transform:scale(400,60);
+}
+.box1{
+    transform: scaleX(600);
+}
+.box2{
+    transform: scaleY(5);
+}

@@ -1,0 +1,40 @@
+body{
+    width: 300px;
+    margin:100px;
+    margin-left:200px;
+    
+}
+
+form{
+    border: 2px solid blue ; width: 200mm
+    text-align: center;
+    border-radius:25px;
+    font-family: cursive;
+    font-size:20px;
+}
+input[type="text"], input[type="password"]
+{
+    height: 25px;
+    width: 200px;
+    border: 1px solid black;
+    border-radius: 50px;
+    margin:7px;
+    text-align: :center;
+}
+input[type="text"]:focus, input[type="password"] :focus{
+    outline: none;
+    background-color: blueviolet;
+}
+button{
+    background-color: burlywood;
+    border: none;
+    padding: 5px;
+    width: 100px;
+    margin-bottom: 10px;
+    border-radius: 500px;
+}
+button:have{
+    background-color: greenyellow;
+    cursor: pointer;
+
+}

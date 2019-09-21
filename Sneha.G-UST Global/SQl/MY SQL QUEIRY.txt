@@ -1,0 +1,1557 @@
+
+1]mysql> create database UST;    						//createing database
+Query OK, 1 row affected (0.01 sec)
+
+2]mysql> show databases;       						//displaying  the databases
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| mysql              |
+| performance_schema |
+| sakila             |
+| sample             |
+| sneha              |
+| test               |
+| ust                |
+| world              |
++--------------------+
+9 rows in set (0.00 sec)
+
+3]mysql> use ust;							//using  created database
+Database changed
+
+4]mysql> show tables;            	                                                                                           //seeing the data in created table
+Empty set (0.00 sec)
+
+5]mysql> create table student(id int,name varchar(10),email varchar(10));		//creating  table with 3 coloums  withn respective dat types(for this we have to firest used to data base) 
+Query OK, 0 rows affected (0.19 sec)
+
+6]mysql> show tables;							// seeing the created table
++---------------+
+| Tables_in_ust |
++---------------+
+| student       |
++---------------+
+
+7]mysql> desc student;							// to see created table
++-------+-------------+------+-----+---------+-------+
+| Field | Type        | Null | Key | Default | Extra |
++-------+-------------+------+-----+---------+-------+
+| id    | int(11)     | YES  |     | NULL    |       |
+| name  | varchar(10) | YES  |     | NULL    |       |
+| email | varchar(10) | YES  |     | NULL    |       |
++-------+-------------+------+-----+---------+-------+
+3 rows in set (0.02 sec)
+
+8]mysql> drop table student;
+Query OK, 0 rows affected (0.06 sec)					//to delet the table and its data
+
+9]mysql> drop database ust;
+Query OK, 0 rows affected (0.14 sec)					// to delet the create data base
+
+10]mysql> show databases;						
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| mysql              |
+| performance_schema |
+| sakila             |
+| sample             |
+| sneha              |
+| test               |
+| world              |
++--------------------+
+8 rows in set (0.00 sec)
+
+11]mysql> alter table student add column mobileno int;
+Query OK, 0 rows affected (0.39 sec)					// to add an column to the table
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc student;
++----------+-------------+------+-----+---------+-------+
+| Field    | Type        | Null | Key | Default | Extra |
++----------+-------------+------+-----+---------+-------+
+| id       | int(11)     | YES  |     | NULL    |       |
+| name     | varchar(10) | YES  |     | NULL    |       |
+| email    | varchar(10) | YES  |     | NULL    |       |
+| mobileno | int(11)     | YES  |     | NULL    |       |
++----------+-------------+------+-----+---------+-------+
+
+
+mysql> alter table student drop mobileno;			           		// to drop an colun elemnt from the table
+Query OK, 0 rows affected (0.30 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc student;
++---------+-------------+------+-----+---------+-------+
+| Field   | Type        | Null | Key | Default | Extra |
++---------+-------------+------+-----+---------+-------+
+| id      | int(11)     | YES  |     | NULL    |       |
+| name    | varchar(10) | YES  |     | NULL    |       |
+| email   | varchar(10) | YES  |     | NULL    |       |
+| address | varchar(10) | YES  |     | NULL    |       |
++---------+-------------+------+-----+---------+-------+
+
+
+12]mysql> alter table student change name studentname varchar(20); 			//to change the name of the elements
+Query OK, 0 rows affected (0.27 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc student;
++-------------+-------------+------+-----+---------+-------+
+| Field       | Type        | Null | Key | Default | Extra |
++-------------+-------------+------+-----+---------+-------+
+| id          | int(11)     | YES  |     | NULL    |       |
+| studentname | varchar(20) | YES  |     | NULL    |       |
+| email       | varchar(10) | YES  |     | NULL    |       |
+| address     | varchar(10) | YES  |     | NULL    |       |
++-------------+-------------+------+-----+---------+-------+
+4 rows in set (0.01 sec)
+
+mysql> rename table student to student_info;
+Query OK, 0 rows affected (0.08 sec)
+
+mysql> show tables;
++---------------+
+| Tables_in_ust |
++---------------+
+| student_info  |
++---------------+
+1 row in set (0.00 sec)
+
+mysql> insert into student_info(id) values (3);
+Query OK, 1 row affected (0.06 sec)					// to insert the data to value
+
+
+mysql> select * from student_info;						// to see the data in table ;this is the property od DQL
++------+-------------+-------+---------+
+| id   | studentname | email | address |
++------+-------------+-------+---------+
+|    3 | NULL        | NULL  | NULL    |
++------+-------------+-------+---------+
+1 row in set (0.00 sec)
+
+mysql> insert into student_info  values (11,'sneha','snehail','ghgh');
+Query OK, 1 row affected (0.05 sec)
+								// to insert values when we know the order of datas
+mysql> select * from Student_info;
++------+-------------+---------+---------+
+| id   | studentname | email   | address |
++------+-------------+---------+---------+
+|    3 | NULL        | NULL    | NULL    |
+| NULL | sneha       | snehail | ghgh    |
+|   11 | sneha       | snehail | ghgh    |
++------+-------------+---------+---------+
+3 rows in set (0.00 sec)		
+mysql> insert into student_info (studentname,email,address) values ('sneha','snehail','ghgh'),('neha','sehail','vghgh');
+Query OK, 2 rows affected (0.06 sec)
+Records: 2  Duplicates: 0  Warnings: 0
+
+mysql> select * from Student_info;
++------+-------------+---------+---------+
+| id   | studentname | email   | address |
++------+-------------+---------+---------+					// to give 2 values to the table at a time
+|    3 | NULL        | NULL    | NULL    |
+| NULL | sneha       | snehail | ghgh    |
+|   11 | sneha       | snehail | ghgh    |
+| NULL | sneha       | snehail | ghgh    |
+| NULL | neha        | sehail  | vghgh   |
++------+-------------+---------+---------+
+5 rows in set (0.00 sec)
+
+mysql> insert into student_info (id,studentname) values (101,'mani');
+Query OK, 1 row affected (0.05 sec)					// to insert values to the perticular columes of table
+
+mysql> select * from Student_info;
++------+-------------+---------+---------+
+| id   | studentname | email   | address |
++------+-------------+---------+---------+
+|    3 | NULL        | NULL    | NULL    |
+| NULL | sneha       | snehail | ghgh    |
+|   11 | sneha       | snehail | ghgh    |
+| NULL | sneha       | snehail | ghgh    |
+| NULL | neha        | sehail  | vghgh   |
+|  101 | mani        | NULL    | NULL    |
++------+-------------+---------+---------+
+
+
+mysql> update student_info set address = 'basavani';				// to update the date to all the rows in the table(DML)
+Query OK, 6 rows affected (0.08 sec)
+Rows matched: 6  Changed: 6  Warnings: 0
+
+mysql> select * from student_info;
++------+-------------+---------+----------+
+| id   | studentname | email   | address  |
++------+-------------+---------+----------+
+|    3 | NULL        | NULL    | basavani |
+| NULL | sneha       | snehail | basavani |
+|   11 | sneha       | snehail | basavani |
+| NULL | sneha       | snehail | basavani |
+| NULL | neha        | sehail  | basavani |
+|  101 | mani        | NULL    | basavani |
++------+-------------+---------+----------+
+6 rows in set (0.00 sec)
+
+mysql> delete from student_info;					 	// deleteing the data from the table (DML)
+Query OK, 6 rows affected (0.09 sec)
+mysql> select * from student_info;
+Empty set (0.00 sec)
+
+mysql> truncate table student_info;						//TRUNCATING the data from the table
+Query OK, 0 rows affected (0.08 sec)
+
+mysql> select * from student_info;
+Empty set (0.00 sec)
+
+mysql> select id,studentname from student_info;
++------+-------------+							// to select perticular column from the table  we use PROJECTION
+| id   | studentname |
++------+-------------+
+|  101 | rahul       |
+|  656 | sneha       |
+|  546 | guru        |
+|  565 | balu        |
++------+-------------+
+4 rows in set (0.00 sec)
+
+
+mysql> select id,studentname from student_info					//query to fetch id name from the table whose name is guru
+    -> where studentname ='guru';
++------+-------------+
+| id   | studentname |
++------+-------------+
+|  546 | guru        |
++------+-------------+
+1 row in set (0.03 sec)							 	
+
+mysql> update student_info set address ='hjjjk' where id =546;			// insert using where caluse
+Query OK, 1 row affected (0.06 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+mysql> select * from student_info;
++------+-------------+----------+---------+
+| id   | studentname | email    | address |
++------+-------------+----------+---------+
+|  101 | rahul       | fhgh@    | 5555    |
+|  656 | sneha       | bnb@bnb  | 7877    |
+|  546 | guru        | vnb@nn   | hjjjk   |
+|  565 | balu        | vbbv@vvb | 66666   |
++------+-------------+----------+---------+
+4 rows in set (0.00 sec)
+
+mysql> delete from student_info where id=565;                                                           //deleting the table using where clause
+Query OK, 1 row affected (0.08 sec)
+
+mysql> select * from student_info;
++------+-------------+---------+---------+
+| id   | studentname | email   | address |
++------+-------------+---------+---------+
+|  101 | rahul       | fhgh@   | 5555    |
+|  656 | sneha       | bnb@bnb | 7877    |
+|  546 | guru        | vnb@nn  | hjjjk   |
++------+-------------+---------+---------+
+3 rows in set (0.00 sec)
+
+1]CREATE A TABLE OF EMPLYE WITH FOLLOWING COLUMNS
+
+mysql> create table Employe(id int not null,name varchar(200) not null,email varchar(200) not null); 		
+Query OK, 0 rows affected (0.11 sec)
+
+mysql> desc Employe;
++-------+--------------+------+-----+---------+-------+
+| Field | Type         | Null | Key | Default | Extra |
++-------+--------------+------+-----+---------+-------+
+| id    | int(11)      | NO   |     | NULL    |       |
+| name  | varchar(200) | NO   |     | NULL    |       |
+| email | varchar(200) | NO   |     | NULL    |       |
++-------+--------------+------+-----+---------+-------+
+3 rows in set (0.02 sec)
+
+
+mysql> insert into Employe value(101,'sneha','nbnb@bn');			//incerting the data to the table
+Query OK, 1 row affected (0.05 sec)
+
+mysql> insert into Employe value(101,'sneha','nbnb@bn');			// primary key can't take duplicate value
+ERROR 1062 (23000): Duplicate entry '101' for key 'PRIMARY'
+mysql>
+
+mysql> select id1,name,bg as vvv from employe_info;
++-----+---------+------+
+| id1 | name    | vvv  |
++-----+---------+------+
+|   1 | sneha   | o    |
+|   2 | sgur    | b    |
+|   3 | sai     | c    |
+|   4 | sai     | c    |
+|   5 | sai     | a    |
+|   6 | sai     | c    |
+|   7 | manu    | c    |
+|   8 | sanju   | o    |
+| 101 | sneha   | o+   |
+| 102 | deepika | B+   |
++-----+---------+------+
+10 rows in set (0.00 sec)							//query to give temprory name of bloodgroup as bg
+
+
+mysql> select name,designation,salary*12 from employe_info;
++---------+-------------+-----------+
+| name    | designation | salary*12 |
++---------+-------------+-----------+
+| sneha   | tester      |    720000 |
+| sgur    | analyst     |    780000 |
+| sai     | developer   |    900000 |
+| sai     | developer   |    900000 |
+| sai     | HR          |    960000 |
+| sai     | clerk       |   1020000 |
+| manu    | assistent   |   1020000 |
+| sanju   | worker      |   1020000 |
+| sneha   | software    |  36000000 |
+| deepika | HR          |  36000000 |
++---------+-------------+-----------+
+
+mysql> select name,id1,salary,salary*12 annulSal from employe_info;			//to change the column name without using AS
++---------+-----+---------+----------+
+| name    | id1 | salary  | annulSal |
++---------+-----+---------+----------+
+| sneha   |   1 |   60000 |   720000 |
+| sgur    |   2 |   65000 |   780000 |
+| sai     |   3 |   75000 |   900000 |
+| sai     |   4 |   75000 |   900000 |
+| sai     |   5 |   80000 |   960000 |
+| sai     |   6 |   85000 |  1020000 |
+| manu    |   7 |   85000 |  1020000 |
+| sanju   |   8 |   85000 |  1020000 |
+| sneha   | 101 | 3000000 | 36000000 |
+| deepika | 102 | 3000000 | 36000000 |
++---------+-----+---------+----------+
+10 rows in set (0.00 sec)
+
+
+
+							//query to give a allias name to all the columns present in employe info
+mysql> select distinct deptid from employe_info;
++--------+
+| deptid |
++--------+
+|     10 							//to display the unique deptid  from employe info table
+
+|     20 |
+|     30 |
+|     40 |
+|     50 |
+|     60 |
++--------+
+6 rows in set (0.01 sec)					/
+
+mysql> select distinct deptid ,designation from employe_info;
++--------+-------------+
+| deptid | designation |					//to select distinct values from 2 columns 
++--------+-------------+
+|     10 | tester      |
+|     20 | analyst     |
+|     30 | developer   |
+|     30 | HR          |
+|     40 | clerk       |
+|     50 | assistent   |
+|     60 | worker      |
+|     10 | software    |							
+|     20 | HR          |
++--------+-------------+
+9 rows in set (0.02 sec)							 	
+
+mysql> select distinct id1,designation,age from employe_info;		// to didplay the distinct dept id name and age
++-----+-------------+------+
+| id1 | designation | age  |
++-----+-------------+------+
+|   1 | tester      |   45 |
+|   2 | analyst     |   45 |
+|   3 | developer   |   45 |
+|   4 | developer   |   45 |
+|   5 | HR          |   45 |
+|   6 | clerk       |   45 |
+|   7 | assistent   |   45 |
+|   8 | worker      |   45 |
+| 101 | software    |   78 |
+| 102 | HR          |   78 |j
++-----+-------------+------+
+10 rows in set (0.00 sec)							
+
+mysql> select name,salary,salary+5000 from employe_info;
++---------+---------+-------------+
+| name    | salary  | salary+5000 |
++---------+---------+-------------+
+| sneha   |   60000 |       65000 |
+| sgur    |   65000 |       70000 |
+| sai     |   75000 |       80000 |
+| sai     |   75000 |       80000 |
+| sai     |   80000 |       85000 |
+| sai     |   85000 |       90000 |
+| manu    |   85000 |       90000 |
+| sanju   |   85000 |       90000 |
+| sneha   | 3000000 |     3005000 |
+| deepika | 3000000 |     3005000 |
++---------+---------+-------------+
+10 rows in set (0.00 sec)
+							//query to display name salary and salary incriment by 5000
+
+mysql> select name,salary,salary-5000 from employe_info;
++---------+---------+-------------+
+| name    | salary  | salary-5000 |
++---------+---------+-------------+
+| sneha   |   60000 |       55000 |
+| sgur    |   65000 |       60000 |						//query to display name salary and salary decriment by 5000
+
+| sai     |   75000 |       70000 |
+| sai     |   75000 |       70000 |
+| sai     |   80000 |       75000 |
+| sai     |   85000 |       80000 |
+| manu    |   85000 |       80000 |
+| sanju   |   85000 |       80000 |
+| sneha   | 3000000 |     2995000 |
+| deepika | 3000000 |     2995000 |
++---------+---------+-------------+
+10 rows in set (0.00 sec)
+			ARITHMATIC OPERATOR
+
+							
+mysql> select salary*12 from employe_info;
++-----------+
+| salary*12 |
++----------+							//query to display annual salary
+
+|    720000 |
+|    780000 |
+|    900000 |
+|    900000 |
+|    960000 |
+|   1020000 |
+|   1020000 |
+|   1020000 |
+|  36000000 |
+|  36000000 |
++-----------+							
+
+
+mysql> select 10%3;
++------+							//query to 10%3
+| 10%3 |
++------+
+|    1 |
++------+
+1 row in set (0.03 sec)						
+
+
+
+
+mysql> select * from employe_info where deptid!=10;
++-----+---------+--------------+-------------+----------+------+------------+------------+---------+--------+------+
+| id1 | name    | email        | designation | mobileno | age  | dob        | doj        | salary  | deptid | bg   |
++-----+---------+--------------+-------------+----------+------+------------+------------+---------+--------+------+
+|   2 | sgur    | fgjhbg@bbb   | analyst     |   562469 |   45 | 1227-08-23 | 2100-09-21 |   65000 |     20 | b    |			//query to display all the record excldting dept no 10
+|   3 | sai     | fgfggvbg@bbb | developer   |   562469 |   45 | 2127-08-23 | 2100-08-21 |   75000 |     30 | c    |
+|   4 | sai     | fgfggvbg@bbb | developer   |   562469 |   45 | 2127-08-23 | 2100-08-21 |   75000 |     30 | c    |
+|   5 | sai     | fgfggvbg@bbb | HR          |   562469 |   45 | 2127-08-23 | 2100-08-21 |   80000 |     30 | a    |
+|   6 | sai     | fgsgvbg@bbb  | clerk       |   562469 |   45 | 2127-08-23 | 2100-08-21 |   85000 |     40 | c    |
+|   7 | manu    | fgsgvbg@bbb  | assistent   |   562469 |   45 | 2127-08-23 | 2100-08-21 |   85000 |     50 | c    |
+|   8 | sanju   | fgsgvbg@bbb  | worker      |   562469 |   45 | 2127-08-23 | 2100-08-21 |   85000 |     60 | o    |
+| 102 | deepika | ghgh@jbb     | HR          |  7853256 |   78 | 1987-02-07 | 1997-06-25 | 3000000 |     20 | B+   |
++-----+---------+--------------+-------------+----------+------+------------+------------+---------+--------+------+
+				COMPARISTION			
+
+
+mysql> select * from employe_info where salary>8000;
++-----+---------+--------------+-------------+----------+------+------------+------------+---------+--------+------+
+| id1 | name    | email        | designation | mobileno | age  | dob        | doj        | salary  | deptid | bg   |
++-----+---------+--------------+-------------+----------+------+------------+------------+---------+--------+------+
+|   1 | sneha   | fhghg@bbb    | tester      | 56246999 |   45 | 1997-08-23 | 2000-09-21 |   60000 |     10 | o    |		//query to display name designation mobile no age whose salary is greater than 8000
+|   2 | sgur    | fgjhbg@bbb   | analyst     |   562469 |   45 | 1227-08-23 | 2100-09-21 |   65000 |     20 | b    |
+|   3 | sai     | fgfggvbg@bbb | developer   |   562469 |   45 | 2127-08-23 | 2100-08-21 |   75000 |     30 | c    |
+|   4 | sai     | fgfggvbg@bbb | developer   |   562469 |   45 | 2127-08-23 | 2100-08-21 |   75000 |     30 | c    |
+|   5 | sai     | fgfggvbg@bbb | HR          |   562469 |   45 | 2127-08-23 | 2100-08-21 |   80000 |     30 | a    |
+|   6 | sai     | fgsgvbg@bbb  | clerk       |   562469 |   45 | 2127-08-23 | 2100-08-21 |   85000 |     40 | c    |
+|   7 | manu    | fgsgvbg@bbb  | assistent   |   562469 |   45 | 2127-08-23 | 2100-08-21 |   85000 |     50 | c    |
+|   8 | sanju   | fgsgvbg@bbb  | worker      |   562469 |   45 | 2127-08-23 | 2100-08-21 |   85000 |     60 | o    |
+| 101 | sneha   | ghj@jbb      | software    |   565656 |   78 | 1997-02-11 | 1997-05-25 | 3000000 |     10 | o+   |
+| 102 | deepika | ghgh@jbb     | HR          |  7853256 |   78 | 1987-02-07 | 1997-06-25 | 3000000 |     20 | B+   |
++-----+---------+--------------+-------------+----------+------+------------+------------+---------+--------+------+
+10 rows in set (0.00 sec)
+
+							
+mysql> select * from employe_info where deptid<40;
++-----+---------+--------------+-------------+----------+------+------------+------------+---------+--------+------+
+| id1 | name    | email        | designation | mobileno | age  | dob        | doj        | salary  | deptid | bg   |
++-----+---------+--------------+-------------+----------+------+------------+------------+---------+--------+------+
+|   1 | sneha   | fhghg@bbb    | tester      | 56246999 |   45 | 1997-08-23 | 2000-09-21 |   60000 |     10 | o    |
+|   2 | sgur    | fgjhbg@bbb   | analyst     |   562469 |   45 | 1227-08-23 | 2100-09-21 |   65000 |     20 | b    |		//quer to display the table whose dept id is less than 40
+|   3 | sai     | fgfggvbg@bbb | developer   |   562469 |   45 | 2127-08-23 | 2100-08-21 |   75000 |     30 | c    |
+|   4 | sai     | fgfggvbg@bbb | developer   |   562469 |   45 | 2127-08-23 | 2100-08-21 |   75000 |     30 | c    |
+|   5 | sai     | fgfggvbg@bbb | HR          |   562469 |   45 | 2127-08-23 | 2100-08-21 |   80000 |     30 | a    |
+| 101 | sneha   | ghj@jbb      | software    |   565656 |   78 | 1997-02-11 | 1997-05-25 | 3000000 |     10 | o+   |
+| 102 | deepika | ghgh@jbb     | HR          |  7853256 |   78 | 1987-02-07 | 1997-06-25 | 3000000 |     20 | B+   |
++-----+---------+--------------+-------------+----------+------+------------+------------+---------+--------+------+
+
+
+
+mysql> select * from employe_info where salary>=75000;
++-----+---------+--------------+-------------+----------+------+------------+------------+---------+--------+------+
+| id1 | name    | email        | designation | mobileno | age  | dob        | doj        | salary  | deptid | bg   |
++-----+---------+--------------+-------------+----------+------+------------+------------+---------+--------+------+
+|   3 | sai     | fgfggvbg@bbb | developer   |   562469 |   45 | 2127-08-23 | 2100-08-21 |   75000 |     30 | c    |		// query to display salary <75000 
+|   4 | sai     | fgfggvbg@bbb | developer   |   562469 |   45 | 2127-08-23 | 2100-08-21 |   75000 |     30 | c    |
+|   5 | sai     | fgfggvbg@bbb | HR          |   562469 |   45 | 2127-08-23 | 2100-08-21 |   80000 |     30 | a    |
+|   6 | sai     | fgsgvbg@bbb  | clerk       |   562469 |   45 | 2127-08-23 | 2100-08-21 |   85000 |     40 | c    |
+|   7 | manu    | fgsgvbg@bbb  | assistent   |   562469 |   45 | 2127-08-23 | 2100-08-21 |   85000 |     50 | c    |
+|   8 | sanju   | fgsgvbg@bbb  | worker      |   562469 |   45 | 2127-08-23 | 2100-08-21 |   85000 |     60 | o    |
+| 101 | sneha   | ghj@jbb      | software    |   565656 |   78 | 1997-02-11 | 1997-05-25 | 3000000 |     10 | o+   |
+| 102 | deepika | ghgh@jbb     | HR          |  7853256 |   78 | 1987-02-07 | 1997-06-25 | 3000000 |     20 | B+   |
++-----+---------+--------------+-------------+----------+------+------------+------------+---------+--------+------+
+8 rows in set (0.00 sec)
+							
+mysql> select * from employe_info where salary<=75000;
++-----+-------+--------------+-------------+----------+------+------------+------------+--------+--------+------+
+| id1 | name  | email        | designation | mobileno | age  | dob        | doj        | salary | deptid | bg   |
++-----+-------+--------------+-------------+----------+------+------------+------------+--------+--------+------+
+|   1 | sneha | fhghg@bbb    | tester      | 56246999 |   45 | 1997-08-23 | 2000-09-21 |  60000 |     10 | o    |		 // query to display the salary less than or eqal to 75000
+
+|   2 | sgur  | fgjhbg@bbb   | analyst     |   562469 |   45 | 1227-08-23 | 2100-09-21 |  65000 |     20 | b    |
+|   3 | sai   | fgfggvbg@bbb | developer   |   562469 |   45 | 2127-08-23 | 2100-08-21 |  75000 |     30 | c    |
+|   4 | sai   | fgfggvbg@bbb | developer   |   562469 |   45 | 2127-08-23 | 2100-08-21 |  75000 |     30 | c    |
++-----+-------+--------------+-------------+----------+------+------------+------------+--------+--------+------+
+4 rows in set (0.00 sec)
+
+  			AND
+
+mysql> select * from employe_info where deptid =30 and designation ='developer';
++-----+------+--------------+-------------+----------+------+------------+------------+--------+--------+------+
+| id1 | name | email        | designation | mobileno | age  | dob        | doj        | salary | deptid | bg   |	                /query to display all the record whose is working in depaid 20 and only if  designation is developer
++-----+------+--------------+-------------+----------+------+------------+------------+--------+--------+------+
+|   3 | sai  | fgfggvbg@bbb | developer   |   562469 |   50 | 2127-08-23 | 2100-08-21 |  75000 |     30 | c    |
+|   4 | sai  | fgfggvbg@bbb | developer   |   562469 |   50 | 2127-08-23 | 2100-08-21 |  75000 |     30 | c    |
++-----+------+--------------+-------------+----------+------+------------+------------+--------+--------+------+
+2 rows in set (0.00 sec)
+							   
+mysql> select * from employe_info where name='sai' and designation='clerk';
++-----+------+-------------+-------------+----------+------+------------+------------+--------+--------+------+
+| id1 | name | email       | designation | mobileno | age  | dob        | doj        | salary | deptid | bg   |                 /query to display all the record of employe table who name is sai and  designation is clerk
++-----+------+-------------+-------------+----------+------+------------+------------+--------+--------+------+
+|   6 | sai  | fgsgvbg@bbb | clerk       |   562469 |   50 | 2127-08-23 | 2100-08-21 |  85000 |     40 | c    |
++-----+------+-------------+-------------+----------+------+------------+------------+--------+--------+------+
+1 row in set (0.00 sec)
+								
+mysql> select *from employe_info where designation ='HR' and salary=80000;
++-----+------+--------------+-------------+----------+------+------------+------------+--------+--------+------+
+| id1 | name | email        | designation | mobileno | age  | dob        | doj        | salary | deptid | bg   |		//query to display all the data whose job designation is HR and salary is 80000
+
+	
++-----+------+--------------+-------------+----------+------+------------+------------+--------+--------+------+
+|   5 | sai  | fgfggvbg@bbb | HR          |   562469 |   50 | 2127-08-23 | 2100-08-21 |  80000 |     30 | a    |
++-----+------+--------------+-------------+----------+------+------------+------------+--------+--------+------+
+1 row in set (0.78 sec)	
+	
+				OR
+						
+mysql> select* from employe_info where deptid=20 or deptid=60;
++-----+---------+-------------+-------------+----------+------+------------+------------+---------+--------+------+
+| id1 | name    | email       | designation | mobileno | age  | dob        | doj        | salary  | deptid | bg   |
++-----+---------+-------------+-------------+----------+------+------------+------------+---------+--------+------+
+|   2 | sgur    | fgjhbg@bbb  | analyst     |   562469 |   50 | 1227-08-23 | 2100-09-21 |   65000 |     20 | b    |		//query to diplay all the records who is working in dept no 30 or dept no 60
+|   8 | sanju   | fgsgvbg@bbb | worker      |   562469 |   50 | 2127-08-23 | 2100-08-21 |   85000 |     60 | o    |
+| 102 | deepika | ghgh@jbb    | HR          |  7853256 |   50 | 1987-02-07 | 1997-06-25 | 3000000 |     20 | B+   |
++-----+---------+-------------+-------------+----------+------+------------+------------+---------+--------+------+								
+
+
+mysql> select name,salary ,email from employe_info where designation='tester' or age>60;
++-------+--------+-----------+							//query to display name salary and email whose designation is tester and age is >60
+| name  | salary | email     |
++-------+--------+-----------+
+| sneha |  60000 | fhghg@bbb |
++-------+--------+-----------+
+1 row in set (0.00 sec)
+
+
+mysql> select name from employe_info where designation ='HR' and salary =75000 or designation = 'clerk' and salary =85000;
++------+
+| name |
++------+							/query to display the name of the employes whos is working as HR in salary 75000 or whose is working as crerk                                                                                                                                                                          where sal is greater than 85000
+| sai  |
++------+
+1 row in set (0.00 sec)									
+mysql> select salary and designation from employe_info where designation = 'software' and salary = 75000;
+Empty set (0.00 sec)								//query to display salary =750000 and dsignation =software developer
+
+				NOT
+
+																
+mysql> select designation from employe_info where not designation ='software';
++-------------+
+| designation |
++-------------+
+| tester      |
+| analyst     									//query to diaplay designation where designation is not software |
+| developer   |
+| developer   |
+| HR          |
+| clerk       |
+| assistent   |
+| worker      |
+| HR          |
++-------------+
+9 rows in set (0.00 sec)									
+
+mysql> select * from employe_info where deptid != 20 and deptid  != 30;
++-----+-------+-------------+-------------+----------+------+------------+------------+---------+--------+------+
+| id1 | name  | email       | designation | mobileno | age  | dob        | doj        | salary  | deptid | bg   |
++-----+-------+-------------+-------------+----------+------+------------+------------+---------+--------+------+
+|   1 | sneha | fhghg@bbb   | tester      | 56246999 |   50 | 1997-08-23 | 2000-09-21 |   60000 |     10 | o    |
+|   6 | sai   | fgsgvbg@bbb | clerk       |   562469 |   50 | 2127-08-23 | 2100-08-21 |   85000 |     40 | c    |
+|   7 | manu  | fgsgvbg@bbb | assistent   |   562469 |   50 | 2127-08-23 | 2100-08-21 |   85000 |     50 | c    |
+|   8 | sanju | fgsgvbg@bbb | worker      |   562469 |   50 | 2127-08-23 | 2100-08-21 |   85000 |     60 | o    |
+| 101 | sneha | ghj@jbb     | software    |   565656 |   50 | 1997-02-11 | 1997-05-25 | 3000000 |     10 | o+   |
++-----+-------+-------------+-------------+----------+------+------------+------------+---------+--------+------+		//query to display allthe employe  excluding dept 20 and 30
+5 rows in set (0.00 sec)
+								
+mysql> select * from employe_info where not deptid = 20 and not deptid  = 30;
++-----+-------+-------------+-------------+----------+------+------------+------------+---------+--------+------+
+| id1 | name  | email       | designation | mobileno | age  | dob        | doj        | salary  | deptid | bg   |
++-----+-------+-------------+-------------+----------+------+------------+------------+---------+--------+------+
+|   1 | sneha | fhghg@bbb   | tester      | 56246999 |   50 | 1997-08-23 | 2000-09-21 |   60000 |     10 | o    |
+|   6 | sai   | fgsgvbg@bbb | clerk       |   562469 |   50 | 2127-08-23 | 2100-08-21 |   85000 |     40 | c    |
+|   7 | manu  | fgsgvbg@bbb | assistent   |   562469 |   50 | 2127-08-23 | 2100-08-21 |   85000 |     50 | c    |
+|   8 | sanju | fgsgvbg@bbb | worker      |   562469 |   50 | 2127-08-23 | 2100-08-21 |   85000 |     60 | o    |
+| 101 | sneha | ghj@jbb     | software    |   565656 |   50 | 1997-02-11 | 1997-05-25 | 3000000 |     10 | o+   |
++-----+-------+-------------+-------------+----------+------+------------+------------+---------+--------+------+
+5 rows in set (0.00 sec)
+
+mysql> select * from employe_info where not designation= 'analyst' and not deptid=40;
++-----+---------+--------------+-------------+----------+------+------------+------------+---------+--------+------+
+| id1 | name    | email        | designation | mobileno | age  | dob        | doj        | salary  | deptid | bg   |
++-----+---------+--------------+-------------+----------+------+------------+------------+---------+--------+------+
+|   1 | sneha   | fhghg@bbb    | tester      | 56246999 |   50 | 1997-08-23 | 2000-09-21 |   60000 |     10 | o    |
+|   3 | sai     | fgfggvbg@bbb | developer   |   562469 |   50 | 2127-08-23 | 2100-08-21 |   75000 |     30 | c    |
+|   4 | sai     | fgfggvbg@bbb | developer   |   562469 |   50 | 2127-08-23 | 2100-08-21 |   75000 |     30 | c    |
+|   5 | sai     | fgfggvbg@bbb | HR          |   562469 |   50 | 2127-08-23 | 2100-08-21 |   80000 |     30 | a    |
+|   7 | manu    | fgsgvbg@bbb  | assistent   |   562469 |   50 | 2127-08-23 | 2100-08-21 |   85000 |     50 | c    |
+|   8 | sanju   | fgsgvbg@bbb  | worker      |   562469 |   50 | 2127-08-23 | 2100-08-21 |   85000 |     60 | o    |
+| 101 | sneha   | ghj@jbb      | software    |   565656 |   50 | 1997-02-11 | 1997-05-25 | 3000000 |     10 | o+   |
+| 102 | deepika | ghgh@jbb     | HR          |  7853256 |   50 | 1987-02-07 | 1997-06-25 | 3000000 |     20 | B+   |
++-----+---------+--------------+-------------+----------+------+------------+------------+---------+--------+------+
+8 rows in set (0.00 sec)
+							//query to dispay the employe details excluding salesman and who all are working in deptid=40
+
+
+mysql> select * from employe_info where designation='HR' and (deptid=40 or deptid=30);
++-----+------+--------------+-------------+----------+------+------------+------------+--------+--------+------+
+| id1 | name | email        | designation | mobileno | age  | dob        | doj        | salary | deptid | bg   |
++-----+------+--------------+-------------+----------+------+------------+------------+--------+--------+------+
+|   5 | sai  | fgfggvbg@bbb | HR          |   562469 |   50 | 2127-08-23 | 2100-08-21 |  80000 |     30 | a    |
++-----+------+--------------+-------------+----------+------+------------+------------+--------+--------+------+
+1 row in set (0.00 sec)							//query to display all the employe detail who is working as salesman for dept no 20 or 30
+
+
+mysql> select * from employe_info where (salary >=65000 and salary<=85000)and deptid =30;
++-----+------+--------------+-------------+----------+------+------------+------------+--------+--------+------+
+| id1 | name | email        | designation | mobileno | age  | dob        | doj        | salary | deptid | bg   |		//query to display all the employe whos is working in the deptno 
+										20 only if salary is greater than 10000 and 250000 including 10000 and 		  													25000
++-----+------+--------------+-------------+----------+------+------------+------------+--------+--------+------+
+|   3 | sai  | fgfggvbg@bbb | developer   |   562469 |   50 | 2127-08-23 | 2100-08-21 |  75000 |     30 | c    |
+|   4 | sai  | fgfggvbg@bbb | developer   |   562469 |   50 | 2127-08-23 | 2100-08-21 |  75000 |     30 | c    |
+|   5 | sai  | fgfggvbg@bbb | HR          |   562469 |   50 | 2127-08-23 | 2100-08-21 |  80000 |     30 | a    |
++-----+------+--------------+-------------+----------+------+------------+------------+--------+--------+------+
+3 rows in set (0.00 sec)
+
+
+									//query to display all the record who is working as a software developer and date of birth is 1994
+
+
+mysql> select * from employe_info where deptid=20 or deptid=10 or deptid=30;
++-----+---------+--------------+-------------+----------+------+------------+------------+---------+--------+------+
+| id1 | name    | email        | designation | mobileno | age  | dob        | doj        | salary  | deptid | bg   |
++-----+---------+--------------+-------------+----------+------+------------+------------+---------+--------+------+
+|   1 | sneha   | fhghg@bbb    | tester      | 56246999 |   50 | 1997-08-23 | 2000-09-21 |   60000 |     10 | o    |
+|   2 | sgur    | fgjhbg@bbb   | analyst     |   562469 |   50 | 1227-08-23 | 2100-09-21 |   65000 |     20 | b    |
+|   3 | sai     | fgfggvbg@bbb | developer   |   562469 |   50 | 2127-08-23 | 2100-08-21 |   75000 |     30 | c    |	//query to display the employe who is working in ept 20 or 30or 10
+|   4 | sai     | fgfggvbg@bbb | developer   |   562469 |   50 | 2127-08-23 | 2100-08-21 |   75000 |     30 | c    |
+|   5 | sai     | fgfggvbg@bbb | HR          |   562469 |   50 | 2127-08-23 | 2100-08-21 |   80000 |     30 | a    |
+| 101 | sneha   | ghj@jbb      | software    |   565656 |   50 | 1997-02-11 | 1997-05-25 | 3000000 |     10 | o+   |
+| 102 | deepika | ghgh@jbb     | HR          |  7853256 |   50 | 1987-02-07 | 1997-06-25 | 3000000 |     20 | B+   |
++-----+---------+--------------+-------------+----------+------+------------+------------+---------+--------+------+
+
+
+mysql> select * from employe_info where designation in('tester','analyst','HR');
++-----+---------+--------------+-------------+----------+------+------------+------------+---------+--------+------+
+| id1 | name    | email        | designation | mobileno | age  | dob        | doj        | salary  | deptid | bg   |
++-----+---------+--------------+-------------+----------+------+------------+------------+---------+--------+------+
+|   1 | sneha   | fhghg@bbb    | tester      | 56246999 |   50 | 1997-08-23 | 2000-09-21 |   60000 |     10 | o    |
+|   2 | sgur    | fgjhbg@bbb   | analyst     |   562469 |   50 | 1227-08-23 | 2100-09-21 |   65000 |     20 | b    |		/query to display all the details whose designation is hr analyst and tester
+|   5 | sai     | fgfggvbg@bbb | HR          |   562469 |   50 | 2127-08-23 | 2100-08-21 |   80000 |     30 | a    |
+| 102 | deepika | ghgh@jbb     | HR          |  7853256 |   50 | 1987-02-07 | 1997-06-25 | 3000000 |     20 | B+   |
++-----+---------+--------------+-------------+----------+------+------------+------------+---------+--------+------+
+4 rows in set (0.00 sec)
+
+
+										
+mysql> select* from employe_info where designation='clerk' and deptid in(20,30,40,60,70);
++-----+------+-------------+-------------+----------+------+------------+------------+--------+--------+------+
+| id1 | name | email       | designation | mobileno | age  | dob        | doj        | salary | deptid | bg   |
++-----+------+-------------+-------------+----------+------+------------+------------+--------+--------+------+	//query to display all the employe details who are working as a clerk in dept 20 40 30 60 70
+|   6 | sai  | fgsgvbg@bbb | clerk       |   562469 |   50 | 2127-08-23 | 2100-08-21 |  85000 |     40 | c    |
++-----+------+-------------+-------------+----------+------+------------+------------+--------+--------+------+
+1 row in set (0.00 sec)
+										
+
+										
+
+mysql> select* from employe_info where designation='clerk' and deptid not in(20,40,60,70);
+Empty set (0.00 sec)								//query to display all the employe details who are working as a clerk and excluding dept 20 40 60 70
+
+
+
+mysql> select * from employe_info where designation not in('analyst','HR') and deptid in(20,40,60);
++-----+-------+-------------+-------------+----------+------+------------+------------+--------+--------+------+
+| id1 | name  | email       | designation | mobileno | age  | dob        | doj        | salary | deptid | bg   |
++-----+-------+-------------+-------------+----------+------+------------+------------+--------+--------+------+
+|   6 | sai   | fgsgvbg@bbb | clerk       |   562469 |   50 | 2127-08-23 | 2100-08-21 |  85000 |     40 | c    |	//query to display all ryhe detail of the employe who are working in dept 20 40 60 excluding HR,or analyst
+
+|   8 | sanju | fgsgvbg@bbb | worker      |   562469 |   50 | 2127-08-23 | 2100-08-21 |  85000 |     60 | o    |
++-----+-------+-------------+-------------+----------+------+------------+------------+--------+--------+------+
+2 rows in set (0.00 sec)
+								
+mysql> select * from employe_info where salary between 70000 and 80000;
++-----+------+--------------+-------------+----------+------+------------+------------+--------+--------+------+
+| id1 | name | email        | designation | mobileno | age  | dob        | doj        | salary | deptid | bg   |
++-----+------+--------------+-------------+----------+------+------------+------------+--------+--------+------+
+|   3 | sai  | fgfggvbg@bbb | developer   |   562469 |   50 | 2127-08-23 | 2100-08-21 |  75000 |     30 | c    |
+|   4 | sai  | fgfggvbg@bbb | developer   |   562469 |   50 | 2127-08-23 | 2100-08-21 |  75000 |     30 | c    |	        //query to display all the details of employe whose salary in the range of 20000 to 50000
+
+|   5 | sai  | fgfggvbg@bbb | HR          |   562469 |   50 | 2127-08-23 | 2100-08-21 |  80000 |     30 | a    |
++-----+------+--------------+-------------+----------+------+------------+------------+--------+--------+------+
+3 rows in set (0.00 sec)
+
+
+mysql> select * from employe_info where doj between '1997-01-01' and '1997-12-31';
++-----+---------+----------+-------------+----------+------+------------+------------+---------+--------+------+
+| id1 | name    | email    | designation | mobileno | age  | dob        | doj        | salary  | deptid | bg   |	// write a query to display all the details of employe who hired during 1997									
++-----+---------+----------+-------------+----------+------+------------+------------+---------+--------+------+
+| 101 | sneha   | ghj@jbb  | software    |   565656 |   50 | 1997-02-11 | 1997-05-25 | 3000000 |     10 | o+   |
+| 102 | deepika | ghgh@jbb | HR          |  7853256 |   50 | 1987-02-07 | 1997-06-25 | 3000000 |     20 | B+   |
++-----+---------+----------+-------------+----------+------+------------+------------+---------+--------+------+
+2 rows in set (0.00 sec)									
+
+
+mysql> select * from employe_info where doj not between '1997-01-01' and '1997-12-31';
++-----+-------+--------------+-------------+----------+------+------------+------------+--------+--------+------+
+| id1 | name  | email        | designation | mobileno | age  | dob        | doj        | salary | deptid | bg   |
++-----+-------+--------------+-------------+----------+------+------------+------------+--------+--------+------+
+|   1 | sneha | fhghg@bbb    | tester      | 56246999 |   50 | 1997-08-23 | 2000-09-21 |  60000 |     10 | o    |
+|   2 | sgur  | fgjhbg@bbb   | analyst     |   562469 |   50 | 1227-08-23 | 2100-09-21 |  65000 |     20 | b    |
+|   3 | sai   | fgfggvbg@bbb | developer   |   562469 |   50 | 2127-08-23 | 2100-08-21 |  75000 |     30 | c    |	//query to display all the records  of the employe excluding who is hired in 2
+|   4 | sai   | fgfggvbg@bbb | developer   |   562469 |   50 | 2127-08-23 | 2100-08-21 |  75000 |     30 | c    |
+|   5 | sai   | fgfggvbg@bbb | HR          |   562469 |   50 | 2127-08-23 | 2100-08-21 |  80000 |     30 | a    |
+|   6 | sai   | fgsgvbg@bbb  | clerk       |   562469 |   50 | 2127-08-23 | 2100-08-21 |  85000 |     40 | c    |
+|   7 | manu  | fgsgvbg@bbb  | assistent   |   562469 |   50 | 2127-08-23 | 2100-08-21 |  85000 |     50 | c    |
+|   8 | sanju | fgsgvbg@bbb  | worker      |   562469 |   50 | 2127-08-23 | 2100-08-21 |  85000 |     60 | o    |
++-----+-------+--------------+-------------+----------+------+------------+------------+--------+--------+------+
+8 rows in set (0.00 sec)
+								
+//query to display salary department name of all the employes whoe are working in depaertment 10 or 20 excluding empoye whose salary is greater than or equal to  60000 and salary is less than or equal to 80000 
+
++---------+-------------+---------+
+| name    | designation | salary  |
++---------+-------------+---------+
+| sneha   | software    | 3000000 |
+| deepika | HR          | 3000000 |
++---------+-------------+---------+
+2 rows in set (0.00 sec)
+
+mysql> select name,salary*12 from employe_info where designation is null;		/query to display employe name and annual salaray if designation is null 
+
++-------+-----------+
+| name  | salary*12 |
++-------+-----------+
+| palak |      NULL |
++-------+-----------+
+1 row in set (0.00 sec)
+
+									
+mysql> select name,salary*12 from employe_info where designation is not null;
++---------+-----------+
+| name    | salary*12 |
++---------+-----------+						///query to display employe name and annual salaray if designation is not null 
+| sneha   |    720000 |
+| sgur    |    780000 |
+| sai     |    900000 |
+| sai     |    900000 |
+| sai     |    960000 |
+| sai     |   1020000 |
+| manu    |   1020000 |
+| sanju   |   1020000 |
+| sneha   |  36000000 |
+| deepika |  36000000 |
++---------+-----------+
+10 rows in set (0.00 sec)
+
+						LIKE OPERATOR
+
+1]query to display all the setail of employe whose name starts with s
+
+mysql> select * from employe_info where name like 's%';
++-----+-------+--------------+-------------+----------+------+------------+------------+---------+--------+------+
+| id1 | name  | email        | designation | mobileno | age  | dob        | doj        | salary  | deptid | bg   |
++-----+-------+--------------+-------------+----------+------+------------+------------+---------+--------+------+
+|   1 | sneha | fhghg@bbb    | tester      | 56246999 |   50 | 1997-08-23 | 2000-09-21 |   60000 |     10 | o    |
+|   2 | sgur  | fgjhbg@bbb   | analyst     |   562469 |   50 | 1227-08-23 | 2100-09-21 |   65000 |     20 | b    |
+|   3 | sai   | fgfggvbg@bbb | developer   |   562469 |   50 | 2127-08-23 | 2100-08-21 |   75000 |     30 | c    |
+|   4 | sai   | fgfggvbg@bbb | developer   |   562469 |   50 | 2127-08-23 | 2100-08-21 |   75000 |     30 | c    |
+|   5 | sai   | fgfggvbg@bbb | HR          |   562469 |   50 | 2127-08-23 | 2100-08-21 |   80000 |     30 | a    |
+|   6 | sai   | fgsgvbg@bbb  | clerk       |   562469 |   50 | 2127-08-23 | 2100-08-21 |   85000 |     40 | c    |
+|   8 | sanju | fgsgvbg@bbb  | worker      |   562469 |   50 | 2127-08-23 | 2100-08-21 |   85000 |     60 | o    |
+| 101 | sneha | ghj@jbb      | software    |   565656 |   50 | 1997-02-11 | 1997-05-25 | 3000000 |     10 | o+   |
++-----+-------+--------------+-------------+----------+------+------------+------------+---------+--------+------+ 
+
+2] query to display all the detail of employe whose name contains only 5 charecter
+
+mysql> select * from employe_info where name like '_____';
++-----+-------+-------------+-------------+----------+------+------------+------------+---------+--------+------+
+| id1 | name  | email       | designation | mobileno | age  | dob        | doj        | salary  | deptid | bg   |
++-----+-------+-------------+-------------+----------+------+------------+------------+---------+--------+------+
+|   1 | sneha | fhghg@bbb   | tester      | 56246999 |   50 | 1997-08-23 | 2000-09-21 |   60000 |     10 | o    |
+|   8 | sanju | fgsgvbg@bbb | worker      |   562469 |   50 | 2127-08-23 | 2100-08-21 |   85000 |     60 | o    |
+|  10 | palak | NULL        | NULL        |     NULL | NULL | NULL       | NULL       |    NULL |   NULL | NULL |
+| 101 | sneha | ghj@jbb     | software    |   565656 |   50 | 1997-02-11 | 1997-05-25 | 3000000 |     10 | o+   |
++-----+-------+-------------+-------------+----------+------+------------+------------+---------+--------+------+
+4 rows in set (0.00 sec)
+
+3] Query to display name salary date of birth date of joining and age whose starts with  s and ends with a
+mysql> select * from employe_info where name like 's%a';
+
++-----+-------+-----------+-------------+----------+------+------------+------------+---------+--------+------+
+| id1 | name  | email     | designation | mobileno | age  | dob        | doj        | salary  | deptid | bg   |
++-----+-------+-----------+-------------+----------+------+------------+------------+---------+--------+------+
+|   1 | sneha | fhghg@bbb | tester      | 56246999 |   50 | 1997-08-23 | 2000-09-21 |   60000 |     10 | o    |
+| 101 | sneha | ghj@jbb   | software    |   565656 |   50 | 1997-02-11 | 1997-05-25 | 3000000 |     10 | o+   |
++-----+-------+-----------+-------------+----------+------+------------+------------+---------+--------+------+
+2 rows in set (0.00 sec)
+
+4] Query to doisplay all the record of the employe whose second cahrecter is g
+mysql> select * from employe_info where name like '_g%';
++-----+------+------------+-------------+----------+------+------------+------------+--------+--------+------+
+| id1 | name | email      | designation | mobileno | age  | dob        | doj        | salary | deptid | bg   |
++-----+------+------------+-------------+----------+------+------------+------------+--------+--------+------+
+|   2 | sgur | fgjhbg@bbb | analyst     |   562469 |   50 | 1227-08-23 | 2100-09-21 |  65000 |     20 | b    |
++-----+------+------------+-------------+----------+------+------------+------------+--------+--------+------+
+1 row in set (0.00 sec)
+
+5] Query  to display all the records of employe where disignation have atlest  2 times e
+
+mysql> select * from employe_info where name like '%a%a%';
++-----+-------+-------+-------------+----------+------+------+------+--------+--------+------+
+| id1 | name  | email | designation | mobileno | age  | dob  | doj  | salary | deptid | bg   |
++-----+-------+-------+-------------+----------+------+------+------+--------+--------+------+
+|  10 | palak | NULL  | NULL        |     NULL | NULL | NULL | NULL |   NULL |   NULL | NULL |
++-----+-------+-------+-------------+----------+------+------+------+--------+--------+------+
+1 row in set (0.00 sec)
+
+
+6] Query to selct all the string of 5 that starts with s and second last charecter of string is L
+
+mysql> select * from employe_info where name like'p__a_';
++-----+-------+-------+-------------+----------+------+------+------+--------+--------+------+
+| id1 | name  | email | designation | mobileno | age  | dob  | doj  | salary | deptid | bg   |
++-----+-------+-------+-------------+----------+------+------+------+--------+--------+------+
+|  10 | palak | NULL  | NULL        |     NULL | NULL | NULL | NULL |   NULL |   NULL | NULL |
++-----+-------+-------+-------------+----------+------+------+------+--------+--------+------+
+1 row in set (0.00 sec)
+
+7] Query to display all the deatail af employe if the name of employe satrts wihth s charecter or starts with d charecter
+
+mysql> select * from employe_info where name like 's%' or name like 'd%';
++-----+---------+--------------+-------------+----------+------+------------+------------+---------+--------+------+
+| id1 | name    | email        | designation | mobileno | age  | dob        | doj        | salary  | deptid | bg   |
++-----+---------+--------------+-------------+----------+------+------------+------------+---------+--------+------+
+|   1 | sneha   | fhghg@bbb    | tester      | 56246999 |   50 | 1997-08-23 | 2000-09-21 |   60000 |     10 | o    |
+|   2 | sgur    | fgjhbg@bbb   | analyst     |   562469 |   50 | 1227-08-23 | 2100-09-21 |   65000 |     20 | b    |
+|   3 | sai     | fgfggvbg@bbb | developer   |   562469 |   50 | 2127-08-23 | 2100-08-21 |   75000 |     30 | c    |
+|   4 | sai     | fgfggvbg@bbb | developer   |   562469 |   50 | 2127-08-23 | 2100-08-21 |   75000 |     30 | c    |
+|   5 | sai     | fgfggvbg@bbb | HR          |   562469 |   50 | 2127-08-23 | 2100-08-21 |   80000 |     30 | a    |
+|   6 | sai     | fgsgvbg@bbb  | clerk       |   562469 |   50 | 2127-08-23 | 2100-08-21 |   85000 |     40 | c    |
+|   8 | sanju   | fgsgvbg@bbb  | worker      |   562469 |   50 | 2127-08-23 | 2100-08-21 |   85000 |     60 | o    |
+| 101 | sneha   | ghj@jbb      | software    |   565656 |   50 | 1997-02-11 | 1997-05-25 | 3000000 |     10 | o+   |
+| 102 | deepika | ghgh@jbb     | HR          |  7853256 |   50 | 1987-02-07 | 1997-06-25 | 3000000 |     20 | B+   |
++-----+---------+--------------+-------------+----------+------+------------+------------+---------+--------+------+
+9 rows in set (0.00 sec)
+
+8] display all the recods excluding of employe whose name starts with s
+
+mysql> select * from employe_info where name not like 's%';
++-----+---------+-------------+-------------+----------+------+------------+------------+---------+--------+------+
+| id1 | name    | email       | designation | mobileno | age  | dob        | doj        | salary  | deptid | bg   |
++-----+---------+-------------+-------------+----------+------+------------+------------+---------+--------+------+
+|   7 | manu    | fgsgvbg@bbb | assistent   |   562469 |   50 | 2127-08-23 | 2100-08-21 |   85000 |     50 | c    |
+|  10 | palak   | NULL        | NULL        |     NULL | NULL | NULL       | NULL       |    NULL |   NULL | NULL |
+| 102 | deepika | ghgh@jbb    | HR          |  7853256 |   50 | 1987-02-07 | 1997-06-25 | 3000000 |     20 | B+   |
++-----+---------+-------------+-------------+----------+------+------------+------------+---------+--------+------+
+3 rows in set (0.14 sec)
+
+                                                                                                      FUNCTIONS
+
+1] query to display avg, min,max,count of the employes
+mysql> select avg(salary) from employe_info ;
++-------------+
+| avg(salary) |
++-------------+
+|      661000 |
++-------------+
+1 row in set (0.05 sec)
+
+
+mysql> select count(id1) from employe_info;
++------------+
+| count(id1) |
++------------+
+|         11 |
++------------+
+1 row in set (0.00 sec)
+
+mysql> select min(id1) from employe_info;
++----------+
+| min(id1) |
++----------+
+
+mysql> select max(id1) from employe_info;
++----------+
+| max(id1) |
++----------+
+|      102 |
++----------+
+ 2] query to perfprm al the operation in one step
+
+
+mysql> select avg(id1),min(id1),count(id1),max(id1) from employe_info;
++----------+----------+------------+----------+
+| avg(id1) | min(id1) | count(id1) | max(id1) |
++----------+----------+------------+----------+
+|  22.6364 |        1 |         11 |      102 |
++----------+----------+------------+----------+
+  
+
+3] query to give the  alis name foe all the method columns
+
+
+mysql> select avg(id1) as avg1,min(id1) as min1,count(id1) as count1, max(id1) as max1 from employe_info;
++---------+------+--------+------+
+| avg1    | min1 | count1 | max1 |
++---------+------+--------+------+
+| 22.6364 |    1 |     11 |  102 |
++---------+------+--------+------+
+1 row in set (0.01 sec)
+
+
++-----+---------+--------------+-------------+----------+------+------------+------------+---------+--------+------+
+| id1 | name    | email        | designation | mobileno | age  | dob        | doj        | salary  | deptid | bg   |
++-----+---------+--------------+-------------+----------+------+------------+------------+---------+--------+------+
+| 101 | sneha   | ghj@jbb      | software    |   565656 |   50 | 1997-02-11 | 1997-05-25 | 3000000 |     10 | o+   |
+| 102 | deepika | ghgh@jbb     | HR          |  7853256 |   50 | 1987-02-07 | 1997-06-25 | 3000000 |     20 | B+   |
+|   6 | sai     | fgsgvbg@bbb  | clerk       |   562469 |   50 | 2127-08-23 | 2100-08-21 |   85000 |     40 | c    |
+|   7 | manu    | fgsgvbg@bbb  | assistent   |   562469 |   50 | 2127-08-23 | 2100-08-21 |   85000 |     50 | c    |
+|   8 | sanju   | fgsgvbg@bbb  | worker      |   562469 |   50 | 2127-08-23 | 2100-08-21 |   85000 |     60 | o    |
+|   5 | sai     | fgfggvbg@bbb | HR          |   562469 |   50 | 2127-08-23 | 2100-08-21 |   80000 |     30 | a    |
+|   3 | sai     | fgfggvbg@bbb | developer   |   562469 |   50 | 2127-08-23 | 2100-08-21 |   75000 |     30 | c    |
+|   4 | sai     | fgfggvbg@bbb | developer   |   562469 |   50 | 2127-08-23 | 2100-08-21 |   75000 |     30 | c    |
+|   2 | sgur    | fgjhbg@bbb   | analyst     |   562469 |   50 | 1227-08-23 | 2100-09-21 |   65000 |     20 | b    |
+|   1 | sneha   | fhghg@bbb    | tester      | 56246999 |   50 | 1997-08-23 | 2000-09-21 |   60000 |     10 | o    |
+|  10 | palak   | NULL         | NULL        |     NULL | NULL | NULL       | NULL       |    NULL |   NULL | NULL |
++-----+---------+--------------+-------------+----------+------+------------+------------+---------+--------+------+
+11 rows in set (0.00 sec)
+
+
+4] query to display number of employe hired  after 1987
+
+mysql> select * from employe_info where doj > '1987';
++-----+---------+--------------+-------------+----------+------+------------+------------+---------+--------+------+
+| id1 | name    | email        | designation | mobileno | age  | dob        | doj        | salary  | deptid | bg   |
++-----+---------+--------------+-------------+----------+------+------------+------------+---------+--------+------+
+|   1 | sneha   | fhghg@bbb    | tester      | 56246999 |   50 | 1997-08-23 | 2000-09-21 |   60000 |     10 | o    |
+|   2 | sgur    | fgjhbg@bbb   | analyst     |   562469 |   50 | 1227-08-23 | 2100-09-21 |   65000 |     20 | b    |
+|   3 | sai     | fgfggvbg@bbb | developer   |   562469 |   50 | 2127-08-23 | 2100-08-21 |   75000 |     30 | c    |
+|   4 | sai     | fgfggvbg@bbb | developer   |   562469 |   50 | 2127-08-23 | 2100-08-21 |   75000 |     30 | c    |
+|   5 | sai     | fgfggvbg@bbb | HR          |   562469 |   50 | 2127-08-23 | 2100-08-21 |   80000 |     30 | a    |
+|   6 | sai     | fgsgvbg@bbb  | clerk       |   562469 |   50 | 2127-08-23 | 2100-08-21 |   85000 |     40 | c    |
+|   7 | manu    | fgsgvbg@bbb  | assistent   |   562469 |   50 | 2127-08-23 | 2100-08-21 |   85000 |     50 | c    |
+|   8 | sanju   | fgsgvbg@bbb  | worker      |   562469 |   50 | 2127-08-23 | 2100-08-21 |   85000 |     60 | o    |
+| 101 | sneha   | ghj@jbb      | software    |   565656 |   50 | 1997-02-11 | 1997-05-25 | 3000000 |     10 | o+   |
+| 102 | deepika | ghgh@jbb     | HR          |  7853256 |   50 | 1987-02-07 | 1997-06-25 | 3000000 |     20 | B+   |
++-----+---------+--------------+-------------+----------+------+------------+------------+---------+--------+------+
+10 rows in set, 1 warning (0.06 sec)
+
+5] query to display avg salary and higest sary of department 20,30,40,and 60
+
+mysql> select  avg(salary),max(salary) from employe_info where deptid  = 20 and 30 and 40 and 60 ;
++-------------+-------------+
+| avg(salary) | max(salary) |
++-------------+-------------+
+|     1532500 |     3000000 |
++-------------+-------------+
+1 row in set (0.05 sec)
+
+6] query to display employe name who is hired firest and last
+
+mysql> select max(doj),min(doj) from employe_info;
++------------+------------+
+| max(doj)   | min(doj)   |
++------------+------------+
+| 2100-09-21 | 1997-05-25 |
++------------+------------+
+1 row in set (0.00 sec)
+
+mysql> select max(doj)  as lastHired ,min(doj) as firestHired from employe_info;    //giving alias name
++------------+-------------+
+| lastHired  | firestHired |
++------------+-------------+
+| 2100-09-21 | 1997-05-25  |
++------------+-------------+
+1 row in set (0.00 sec)
+
+
+					SCALAR FUNCTION
+
+1] query to sisplay the employe name in upper case lower case and in title case
+
+mysql> select upper(name) as uppercase from employe_info;
++-----------+
+| uppercase |
++-----------+
+| SNEHA     |
+| SGUR      |
+| SAI       |
+| SAI       |
+| SAI       |
+| SAI       |
+| MANU      |
+| SANJU     |
+| PALAK     |
+| SNEHA     |
+| DEEPIKA   |
++-----------+
+11 rows in set (0.06 sec)
+
+mysql> select lower(name) as lowercase from employe_info;
++-----------+
+| lowercase |
++-----------+
+| sneha     |
+| sgur      |
+| sai       |
+| sai       |
+| sai       |
+| sai       |
+| manu      |
+| sanju     |
+| palak     |
+| sneha     |
+| deepika   |
++-----------+
+11 rows in set (0.05 sec)
+
+2] to calculate the lenth of the employe name
+
+mysql> select length(name) from employe_info;
+mysql> select length(name) as charLength from employe_info;
++------------+
+| charLength |
++------------+
+|          5 |
+|          4 |
+|          3 |
+|          3 |
+|          3 |
+|          3 |
+|          4 |
+|          5 |
+|          5 |
+|          5 |
+|          7 |
++------------+
+11 rows in set (0.00 sec)
+
+3] query to marg the employe id and name
+
+mysql> select concat(id1,name) as idname from employe_info;
++------------+
+| idname     |
++------------+
+| 1sneha     |
+| 2sgur      |
+| 3sai       |
+| 4sai       |
+| 5sai       |
+| 6sai       |
+| 7manu      |
+| 8sanju     |
+| 10palak    |
+| 101sneha   |
+| 102deepika |
++------------+
+11 rows in set (0.03 sec)
+
+4] query to display the name in reverse order
+
+mysql> select reverse(name) from employe_info;
++---------------+
+| reverse(name) |
++---------------+
+| ahens         |
+| rugs          |
+| ias           |
+| ias           |
+| ias           |
+| ias           |
+| unam          |
+| ujnas         |
+| kalap         |
+| ahens         |
+| akipeed       |
++---------------+
+11 rows in set (0.00 sec)
+
+                							SUB STRING
+
+1] query to display  name of all the employe with only 3 charecter
+
+mysql> select  substr(name,1,3) from employe_info;
++------------------+
+| substr(name,1,3) |
++------------------+
+| sne              |
+| sgu              |
+| sai              |
+| sai              |
+| sai              |
+| sai              |
+| man              |
+| san              |
+| pal              |
+| sne              |
+| dee              |
++------------------+
+11 rows in set (0.03 sec)
+
+mysql> select substr(name,1,3) as newstring from employe_info ;
++-----------+
+| newstring |
++-----------+
+| sne       |
+| sgu       |
+| sai       |
+| sai       |
+| sai       |
+| sai       |
+| man       |
+| san       |
+| pal       |
+| sne       |
+| dee       |
++-----------+
+11 rows in set (0.00 sec)
+
+2]  query to display whose  name bigns with consonent
+
+mysql> select substr(name,1,1) from employe_info ;
++------------------+
+| substr(name,1,1) |
++------------------+
+| s                |
+| s                |
+| s                |
+| s                |
+| s                |
+| s                |
+| m                |
+| s                |
+| p                |
+| s                |
+| d                |
++------------------+
+11 rows in set (0.00 sec)
+
+mysql> select substr(name,1,1) from employe_info where substr(name,1,1) not in('a','e','i','o','u');
++------------------+
+| substr(name,1,1) |
++------------------+
+| s                |
+| s                |
+| s                |
+| s                |
+| s                |
+| s                |
+| m                |
+| s                |
+| p                |
+| s                |
+| d                |
++------------------+
+11 rows in set (0.00 sec)
+
+					INSTR()
+
+1] quert to find the position of a in name column
+
+
+mysql>  select instr(name,'a') from employe_info ;
++-----------------+
+| instr(name,'a') |
++-----------------+
+|               5 |
+|               0 |
+|               2 |
+|               2 |
+|               2 |
+|               2 |
+|               2 |
+|               2 |
+|               2 |
+|               5 |
+|               7 |
++-----------------+
+11 rows in set (0.02 sec)
+ 						REPLACE()
+ 1] query to replace the charecter a with r in the name column
+
+mysql> select replace(name, 'a', 'r') as newstring from employe_info;
++-----------+
+| newstring |
++-----------+
+| snehr     |
+| sgur      |
+| sri       |
+| sri       |
+| sri       |
+| sri       |
+| mrnu      |
+| srnju     |
+| prlrk     |
+| snehr     |
+| deepikr   |
++-----------+
+11 rows in set (0.00 sec)
+
+query to dislay number of employe working in dept 30 whose salary is  is 75000;
+
+mysql> select count(*) from employe_info where deptid =30  and salary = 75000;
++----------+
+| count(*) |
++----------+
+|        2 |
++----------+
+1 row in set (0.00 sec)
+						GROUP BY
+
+1] query to display deptid the higest salary of the employe in each deptartment
+
+mysql> select max(salary),deptid from employe_info group by deptid ;
++-------------+--------+
+| max(salary) | deptid |
++-------------+--------+
+|        NULL |   NULL |
+|     3000000 |     10 |
+|     3000000 |     20 |
+|       80000 |     30 |
+|       85000 |     40 |
+|       85000 |     50 |
+|       85000 |     60 |
++-------------+--------+
+7 rows in set (0.00 sec)
+
+2] query to display number of software developer working in each dept
+
+mysql> select count(deptid) from employe_info where designation='developer' group by deptid;
++---------------+
+| count(deptid) |
++---------------+
+|             2 |
++---------------+
+1 row in set (0.00 sec)
+
+3]query to display  no of employe hired on each date
+mysql> select count(doj) from employe_info  group by doj;
++------------+
+| count(doj) |
++------------+
+|          0 |
+|          1 |
+|          1 |
+|          1 |
+|          6 |
+|          1 |
++------------+
+6 rows in set (0.02 sec)
+
+4] query to display min salary in each designation
+
+mysql> select min(salary) from employe_info group by(designation);
++-------------+
+| min(salary) |
++-------------+
+|        NULL |
+|       65000 |
+|       85000 |
+|       85000 |
+|       75000 |
+|       80000 |
+|     3000000 |
+|       60000 |
+|       85000 |
++-------------+
+9 rows in set (0.02 sec)
+				HAVING()
+
+1]query to display dept no who has atlest 4 working employe
+
+mysql> select deptid from employe_info where deptid is not null group by deptid having count(*) >2;
++--------+
+| deptid |
++--------+
+|     30 |
++--------+
+1 row in set (0.02 sec)
+
+2] display deptid whose total salary is greater than 60000
+
+mysql> select deptid from employe_info group by deptid having sum(salary)>60000;
++--------+
+| deptid |
++--------+
+|     10 |
+|     20 |
+|     30 |
+|     40 |
+|     50 |
+|     60 |
++--------+
+6 rows in set (0.00 sec)
+3] to display deptid and average salary of all the departments whose avrage salary is greater than 60000 excluding the employe whose name begins with 'S'
+
+mysql> select  deptid,avg(salary) from employe_info where name not like 's%' group by deptid having avg(salary)>60000;
++--------+-------------+
+| deptid | avg(salary) |
++--------+-------------+
+|     20 |     3000000 |
+|     50 |       85000 |
++--------+-------------+
+2 rows in set (0.02 sec)
+  					ORDER BY
+
+1] query to display all the results of employe info table where salry should be arranded in descending order
+
+mysql> select salary from employe_info order by salary desc;
++---------+
+| salary  |
++---------+
+| 3000000 |
+| 3000000 |
+|   85000 |
+|   85000 |
+|   85000 |
+|   80000 |
+|   75000 |
+|   75000 |
+|   65000 |
+|   60000 |
+|    NULL |
++---------+
+11 rows in set (0.00 sec)
+ 
+2] query to display the employe table using order by caluse 
+
+mysql> select salary from employe_info where salary is not null order by salary;
++---------+
+| salary  |
++---------+
+|   60000 |
+|   65000 |
+|   75000 |
+|   75000 |
+|   80000 |
+|   85000 |
+|   85000 |
+|   85000 |
+| 3000000 |
+| 3000000 |
++---------+
+10 rows in set (0.00 sec)
+
+3] query to display the employename designation doj for all the employe who are working in any of the departments 10 20 30 50 short the records in descending order of salary
+
+mysql> select name,doj,designation from employe_info where deptid  in (10,20,0,50) order by salary desc;
++---------+------------+-------------+
+| name    | doj        | designation |
++---------+------------+-------------+
+| sneha   | 1997-05-25 | software    |
+| deepika | 1997-06-25 | HR          |
+| manu    | 2100-08-21 | assistent   |
+| sgur    | 2100-09-21 | analyst     |
+| sneha   | 2000-09-21 | tester      |
++---------+------------+-------------+
+5 rows in set (0.00 sec)
+
+4] query to display deptid along with number of employe in it 
+
+mysql> select deptid ,count(deptid) as count from employe_info ;
++--------+-------+
+| deptid | count |
++--------+-------+
+|     10 |    10 |
++--------+-------+
+1 row in set (0.01 sec)
+
+							SUB-QUERY(sqlyog)
+
+2] query to display name of the employe who is working in reaserch deptatment
+
+select name from employe_info where deptid =(select dept_id from dept_info where dname = 'research');
+ 
+3] query to display name of the employe who is working in the location which has atlest one 'a' charecter in his name
+
+select name from employe_info where deptid in( select dept_id from dept_info where location like '%a%');
+
+4] query to optain second maximum salary from the employe_info table
+
+select max(salary) from employe_info where salary not in (select max(salary) from employe_info); 
+
+5] query to display the third maximum salary
+
+select max(salary) from employe_info where salary<(select max(salary) from employe_info where salary <(select max(salary) from employe_info));
+
+						JOINTS
+1] query to display all the records using cartition joints 
+2] inner-joins 
+
+select * from employe_info inner join  dept_info on employe_info.deptid = dept_info.dept_id;
+
+3]outer-joins
+@left outer join
+select * from employe_info left outer join  dept_info on employe_info.deptid = dept_info.dept_id;
+ 
+@right outer joons
+select * from employe_info right outer join  dept_info on employe_info.deptid = dept_info.dept_id;
+
+@ full outer join
+select * from employe_info left outer join  dept_info on employe_info.deptid = dept_info.dept_id union select * from employe_info right outer join  dept_info on employe_info.deptid = dept_info.dept_id;
+
+
+						ROLL BACK
+mysql> set autocommit=0;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> rollback;
+Query OK, 0 rows affected (0.08 sec)
+
+mysql> select * from dept_info;
++---------+--------------+----------+
+| dept_id | dname        | location |
++---------+--------------+----------+
+|      10 | accountent   | banglore |
+|      20 | research     | pune     |
+|      30 | sales        | delhi    |
+|      40 | operation    | chenni   |
+|      50 | admin        | mumbai   |
+|      70 | maintainence | goa      |
+|      80 | clerk        | taka     |
+|      90 | gjgjg        | jghjgjh  |
++---------+--------------+----------+
+
+
+			once it is  commited then it will not be roll backed
+
+mysql> insert into dept_info values(101,'lavanya','lagoon');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> commit;
+Query OK, 0 rows affected (0.05 sec)
+
+mysql> select * from dept_info;
++---------+--------------+----------+
+| dept_id | dname        | location |
++---------+--------------+----------+
+|      10 | accountent   | banglore |
+|      20 | research     | pune     |
+|      30 | sales        | delhi    |
+|      40 | operation    | chenni   |
+|      50 | admin        | mumbai   |
+|      70 | maintainence | goa      |
+|      80 | clerk        | taka     |
+|      90 | gjgjg        | jghjgjh  |
+|     101 | lavanya      | lagoon   |
++---------+--------------+----------+
+9 rows in set (0.00 sec)
+
+mysql> rollback;
+Query OK, 0 rows affected (0.00 sec)
+
+
+mysql> select * from dept_info;
++---------+--------------+----------+
+| dept_id | dname        | location |
++---------+--------------+----------+
+|      10 | accountent   | banglore |
+|      20 | research     | pune     |
+|      30 | sales        | delhi    |
+|      40 | operation    | chenni   |
+|      50 | admin        | mumbai   |
+|      70 | maintainence | goa      |
+|      80 | clerk        | taka     |
+|      90 | gjgjg        | jghjgjh  |
+|     101 | lavanya      | lagoon   |
++---------+--------------+----------+
+9 rows in set (0.00 sec)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

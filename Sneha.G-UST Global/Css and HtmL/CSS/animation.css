@@ -1,0 +1,47 @@
+ul{                                  /* writting properties in ul gives effect in whole*/
+ margin-top: 100px;
+ margin-left: 100px;
+}
+li{                                     /*for individual enhancement we use li*/
+    display: inline-block;
+    background-color: black;
+    width: 40px;
+    height: 40px;
+     border-radius: 70px; /*curved border */
+     margin-left: 50px;
+     animation: glow 1s infinite linear;
+
+}
+@keyframes glow{                         /* rules for animation*/
+    0%, 25%, 75%, 100%{
+        transform: scale(0.5,0.5);          /*size of the balls*/
+    }
+    50%{
+        transform: scale(2,02);
+    }
+}
+li:nth-child(1){
+    background-color: blue;
+    animation-delay: 0.1s;
+    box-shadow: 0 0 15px black;
+}
+li:nth-child(2){
+    background-color: orange;
+    animation-delay: 0.2s;
+    box-shadow: 0 0 15px black;
+}
+li:nth-child(3){
+    background-color: gold;
+    animation-delay: 0.3s;
+    box-shadow: 0 0 15px black;
+}
+li:nth-child(4){
+    background-color:chocolate;
+    animation-delay: 0.4s;
+    box-shadow: 0 0 15px black;
+}
+li:nth-child(4){
+    background-color:violet;
+    animation-delay: 0.5s;
+    box-shadow: 0 0 15px black;
+}
